@@ -88,3 +88,24 @@ for (const auto& trade : trades) {
               << " Price=" << trade.GetBidTrade().price_
               << " Quantity=" << trade.GetBidTrade().quantity_ << "\n";
 }
+
+orderbook.CancelOrder(1);  // Cancels the order with ID 1
+
+auto levels = orderbook.GetOrderInfos();
+
+// Print Bid Levels
+std::cout << "Bid Levels:\n";
+for (const auto& bid : levels.GetBids()) {
+    std::cout << "Price: " << bid.price_ << ", Quantity: " << bid.quantity_ << "\n";
+}
+
+// Print Ask Levels
+std::cout << "Ask Levels:\n";
+for (const auto& ask : levels.GetAsks()) {
+    std::cout << "Price: " << ask.price_ << ", Quantity: " << ask.quantity_ << "\n";
+}
+
+
+g++ -std=c++17 -o orderbook main.cpp
+./orderbook
+
